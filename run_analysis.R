@@ -1,24 +1,24 @@
-#Load necessary packages
+#Loading necessary packages
 library(plyr)
 library(data.table)
 library(tidyr)
 
-## Download and unzip dataset 
+## DownLoading and unzip dataset 
 if (!file.exists("./UCI HAR Dataset")) {
     fileUrl<- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-    download.file(fileUrl, "Dataset.zip")
+    downLoading.file(fileUrl, "Dataset.zip")
     unzip("Dataset.zip") 
 }
 
-#Load data files
+#Loading data files
 data_test_X <- read.table("./UCI HAR Dataset/test/X_test.txt")
 data_train_X <- read.table("./UCI HAR Dataset/train/X_train.txt")
 
-#Load activity files
+#Loading activity files
 data_test_Y <- read.table("./UCI HAR Dataset/test/Y_test.txt")
 data_train_Y <- read.table("./UCI HAR Dataset/train/Y_train.txt")
 
-#Load subject files
+#Loading subject files
 data_test_subject <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 data_train_subject <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 
@@ -33,7 +33,7 @@ data_all_Y <- rbind(data_train_Y, data_test_Y)
 data_all_subject <- rbind(data_train_subject, data_test_subject)
 
 #2. Extract only the measurements on the mean and standard deviation for each measurement.
-#Load features.txt file
+#Loading features.txt file
 data_features <- read.table("./UCI HAR Dataset/features.txt")
 
 #Get list of mean and std columns
@@ -46,7 +46,7 @@ data_all_X <- data_all_X[, mean_std]
 names(data_all_X) <- data_features[mean_std, 2]
 
 #3. Use descriptive activity names to name the activities in the data set
-#Load activity_labels.txt file
+#Loading activity_labels.txt file
 data_activities <- read.table("./UCI HAR Dataset/activity_labels.txt")
 
 #Update correct activity name
